@@ -38,14 +38,16 @@ const getImages = (query) => {
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
-  element.classList.add('added');
+  element.classList.toggle('added');
 
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
-  } else {
-    alert('Hey, Already added !')
+    // } else {
+    //   alert('Hey, Already added !')
   }
+
+
 }
 var timer
 const createSlider = () => {
@@ -54,6 +56,7 @@ const createSlider = () => {
     alert('Select at least 2 image.')
     return;
   }
+
   // crate slider previous next area
   sliderContainer.innerHTML = '';
   const prevNext = document.createElement('div');
@@ -69,8 +72,8 @@ const createSlider = () => {
   imagesArea.style.display = 'none';
   const duration = document.getElementById('duration').value || 1000;
 
-  sliders.forEach(slide => {
 
+  sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
     item.innerHTML = `<img class="w-100"
@@ -78,6 +81,7 @@ const createSlider = () => {
     alt="">`;
     sliderContainer.appendChild(item)
   })
+
   changeSlide(0)
   timer = setInterval(function () {
     slideIndex++;
@@ -130,3 +134,8 @@ document.getElementById('search')
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+
+const toggleSpinner = () => {
+  const sliderImage = document.getElementById('slider-image');
+  sliderImage.classList.toggle('d-none');
+}

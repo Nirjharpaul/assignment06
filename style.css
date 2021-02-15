@@ -65,4 +65,7 @@ img {
   }
 }
 
-
+.navber{
+  position: absolute;
+  right: 200px;;
+}

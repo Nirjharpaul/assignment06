@@ -136,6 +136,7 @@ searchBtn.addEventListener('click', function () {
 })
 
 // Enter Key Added
+
 document.getElementById('search')
   .addEventListener('keypress', function (event) {
     if (event.key === 'Enter') {

@@ -30,7 +30,7 @@ const showImages = (images) => {
 }
 
 const getImages = (query) => {
-  toggleSpinner()
+  toggleSpinner();
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
@@ -40,17 +40,19 @@ const getImages = (query) => {
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
-  element.classList.toggle('added');
+  element.classList.add('added');
 
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
-    // } else {
-    //   alert('Hey, Already added !')
+  }
+  else {
+    element.classList.remove('added');
+    sliders.splice(item)
   }
 
-
 }
+
 var timer
 const createSlider = () => {
   // check slider image length
@@ -70,7 +72,7 @@ const createSlider = () => {
 
   sliderContainer.appendChild(prevNext)
   document.querySelector('.main').style.display = 'block';
-  // hide image aria
+  // hide image area
   imagesArea.style.display = 'none';
   const duration = document.getElementById('duration').value || 1000;
 
@@ -84,7 +86,6 @@ const createSlider = () => {
     sliderContainer.appendChild(item)
 
   })
-
 
 
   changeSlide(0)
@@ -128,6 +129,7 @@ searchBtn.addEventListener('click', function () {
   sliders.length = 0;
 })
 
+// Enter Key Added
 document.getElementById('search')
   .addEventListener('keypress', function (event) {
     if (event.key === 'Enter') {
@@ -146,3 +148,4 @@ const toggleSpinner = () => {
   const spinner = document.getElementById('spinner');
   spinner.classList.toggle('d-none');
 }
+
